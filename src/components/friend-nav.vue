@@ -16,7 +16,7 @@
        font-family: sans-serif;
    }
     header{
-        padding: 20px;
+        padding: 30px 20px;
         width: 100%;
         margin: auto;
         background: rgb(50, 155, 50);

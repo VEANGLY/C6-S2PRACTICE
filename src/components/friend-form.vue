@@ -1,9 +1,17 @@
 <template>
     <div class="form-container">
-        <form action="">
-            <input type="text" placeholder="FirstName" class="form-control"><br>
-            <input type="text" placeholder="LastName" class="form-control"><br>
-            <input type="text" placeholder="Comment" class="form-control"><br>
+        <form @submit.prevent="addName">
+            <input type="text" placeholder="FirstName" class="form-control" v-model="firstName"><br>
+            <input type="text" placeholder="LastName" class="form-control" v-model="lastName"><br>
+            <input type="text" placeholder="Comment" class="form-control" v-model="comment"><br>
+            <input type="checkbox" value="Python" v-model="skills">
+            <label for="">Python</label>
+            <input type="checkbox" value="Javascript" v-model="skills">
+            <label for="">Javascript</label>
+            <input type="checkbox" value="HPH" v-model="skills">
+            <label for="">HPH</label>
+            <input type="checkbox" value="Vue JS" v-model="skills"><br>
+            <label for="">Vue JS</label>
             <button type="submit" class="form-control">ADD</button>
         </form>
     </div>
@@ -12,6 +20,24 @@
 <script>
     export default{ 
         name: 'friemd-form',
+         emits: "add-data",
+        data(){
+            return{
+                firstName:"",
+                lastName:"",
+                comment:"",
+                skills:[]
+            }
+        },
+        methods:{
+            addName(){
+                this.$emit("add-data", this.firstName, this.lastName,this.comment,this.skills);
+                this.firstName=""
+                this.lastName=""
+                this.comment=""
+                this.skills=[];
+            }
+        }
     }
 </script>
     
@@ -48,5 +74,11 @@
         font-weight: bold;
         border: none;
         color: white;
+    }
+    button:hover{
+        background: rgb(75, 208, 75);
+    }
+    label{
+        font-size:20px;
     }
 </style>
